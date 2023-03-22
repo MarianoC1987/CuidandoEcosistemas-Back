@@ -60,7 +60,6 @@ app.use("/api/v1/users", users);
 app.use("/api/v1/plants", plants);
 app.use("/api/v1/forum", forumPublications);
 app.use("/api/v1/recommendations", recommendations);
-
 app.use("/api/v1/trefle", trefle);
 
 app.all("*", (req, res, next) => {
