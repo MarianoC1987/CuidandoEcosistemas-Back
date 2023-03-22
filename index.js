@@ -18,6 +18,8 @@ const plants = require("./routes/plantsRoutes");
 const forumPublications = require("./routes/forumPublicationsRoutes");
 const recommendations = require("./routes/recommendationsRoutes");
 
+const trefle = require("./routes/apiTrefleRoutes");
+
 const app = express();
 
 //Set security HTTP headers
@@ -58,6 +60,7 @@ app.use("/api/v1/users", users);
 app.use("/api/v1/plants", plants);
 app.use("/api/v1/forum", forumPublications);
 app.use("/api/v1/recommendations", recommendations);
+app.use("/api/v1/trefle", trefle);
 
 app.all("*", (req, res, next) => {
   next(new AppError(`No se encontro ${req.originalUrl} en este servidor`, 404));
