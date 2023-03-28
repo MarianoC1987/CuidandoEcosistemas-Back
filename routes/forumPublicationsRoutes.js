@@ -4,17 +4,17 @@ const {
   getAllForumPublications,
   createForumPublication,
   deleteForumPublication,
+  setUserId,
+  getForumPublicationById,
 } = require("../controllers/forumPublicationsController");
 
 const router = express.Router();
 
+router.use(protect);
+
 router.get("/allpublications", getAllForumPublications);
-router.post("/createpublication", protect, createForumPublication);
-router.delete(
-  "/delete/:id",
-  protect,
-  restrictTo("admin"),
-  deleteForumPublication
-);
+router.get("/publication/:id", getForumPublicationById);
+router.post("/createpublication", setUserId, createForumPublication);
+router.delete("/delete/:id", restrictTo("admin"), deleteForumPublication);
 
 module.exports = router;

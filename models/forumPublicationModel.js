@@ -2,9 +2,19 @@ const mongoose = require("mongoose");
 
 const forumPublicationSchema = new mongoose.Schema(
   {
+    title: {
+      type: String,
+      required: [true, "La publicacion debe tener un titulo"],
+    },
+    subtitle: {
+      type: String,
+    },
     text: {
       type: String,
       required: [true, "La publicacion no puede estar vacia"],
+    },
+    img: {
+      type: String,
     },
     createdAt: {
       type: Date,
