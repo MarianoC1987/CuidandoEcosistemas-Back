@@ -1,26 +1,12 @@
 const ForumPublication = require("../models/forumPublicationModel");
-const catchAsync = require("../utilities/catchAsync");
 const factory = require("./handlerFactory");
 
-const AppError = require("../utilities/appError");
+exports.setUserId = (req, res, next) => {
+  if (!req.body.user) req.body.user = req.user.id;
+  next();
+};
 
-exports.getAllForumPublications = catchAsync(async (req, res, next) => {
-  const forumPublications = await ForumPublication.find();
-
-  res.status(200).json({
-    status: "success",
-    results: forumPublications.length,
-    data: { forumPublications },
-  });
-});
-
-exports.createForumPublication = catchAsync(async (req, res, next) => {
-  const newForumPublication = await ForumPublication.create(req.body);
-  res.status(201).json({
-    status: "success",
-    message: "Publicacion creada correctamente",
-    data: { publication: newForumPublication },
-  });
-});
-
+exports.getAllForumPublications = factory.getAll(ForumPublication);
+exports.getForumPublicationById = factory.getOne(ForumPublication);
+exports.createForumPublication = factory.createOne(ForumPublication);
 exports.deleteForumPublication = factory.deleteOne(ForumPublication);
