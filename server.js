@@ -2,7 +2,7 @@ require("dotenv").config();
 
 const app = require("./index");
 const mongoose = require("mongoose");
-
+app.use(cors({ origin: `${process.env.CLIENT_URL}` }));
 const DB = process.env.DATABASE.replace(
   "<PASSWORD>",
   process.env.DATABASE_PASSWORD
@@ -37,3 +37,5 @@ process.on("unhandledRejection", (err) => {
     process.exit(1);
   });
 });
+
+module.exports = server;
